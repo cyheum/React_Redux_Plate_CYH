@@ -46,6 +46,9 @@ const config = {
         use: [
           {
             loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+            },
           },
         ],
       },
@@ -81,7 +84,7 @@ const config = {
   },
   devServer: {
     // 개발 서버 설정
-    static: "./dist",
+    static: "./public",
     port: 3000,
     hot: true, // 핫 모듈 교체(HMR) 활성화
     compress: true,
