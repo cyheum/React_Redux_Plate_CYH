@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import * as S from './index.style';
+
 import { color } from '@/styles';
 import { toBodyStyleHidden } from '@/utils';
+
+import * as S from './index.style';
 
 interface IProps {
   height?: number;

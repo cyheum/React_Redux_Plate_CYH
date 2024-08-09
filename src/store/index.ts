@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+
 import home from './modules/home';
 
 const rootReducer = combineReducers({

@@ -1,8 +1,10 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import * as S from "./index.style";
-import { toBodyStyleHidden } from "@/utils";
-import Button, { ButtonProps } from "../../Button";
+import React, { forwardRef, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import { Button, ButtonProps } from '@/components';
+import { toBodyStyleHidden } from '@/utils';
+
+import * as S from './index.style';
 
 interface IProps {
   title?: string | React.ReactNode;
@@ -18,7 +20,8 @@ interface IProps {
   titleStyle?: string;
   descriptionStyle?: string;
   topCloseButtonStyle?: string;
-  closeButtonType?: ButtonProps["buttonType"];
+  whiteTopCloseButton?: boolean;
+  closeButtonType?: ButtonProps['$buttonType'];
   closeAnimationToggle?: boolean;
   noScrollLock?: boolean;
   noOverflow?: boolean;
@@ -43,6 +46,7 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
       modalWrapperStyle,
       buttonStyle,
       topCloseButtonStyle,
+      whiteTopCloseButton,
       noScrollLock,
       closeButtonType,
       closeAnimationToggle,
@@ -70,14 +74,16 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
     }, []);
 
     useEffect(() => {
-      if (typeof closeAnimationToggle !== "undefined" && closeAnimationToggle) {
+      if (typeof closeAnimationToggle !== 'undefined' && closeAnimationToggle) {
         onClickCloseButton();
       }
     }, [closeAnimationToggle]);
 
     const onClickCloseButton = () => {
       setIsClosed(true);
-      setTimeout(() => onClickClose && onClickClose(), 400);
+      setTimeout(() => {
+        onClickClose();
+      }, 400);
     };
 
     return mounted
@@ -85,28 +91,32 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
           <S.Container
             ref={ref}
             onClick={!noBackClose ? onClickCloseButton : undefined}
-            containerStyle={containerStyle}
+            $containerStyle={containerStyle}
           >
             <S.ModalWrapper
-              fullWidth={fullWidth}
-              isClosed={isClosed}
-              noOverflow={noOverflow}
-              phoneMaxWidth={phoneMaxWidth}
-              modalWrapperStyle={modalWrapperStyle}
+              $fullWidth={fullWidth}
+              $isClosed={isClosed}
+              $noOverflow={noOverflow}
+              $phoneMaxWidth={phoneMaxWidth}
+              $modalWrapperStyle={modalWrapperStyle}
               onClick={(e) => e.stopPropagation()}
             >
               {!noCloseButton && (
                 <S.CloseSvgButton
-                  cssStyle={topCloseButtonStyle}
+                  $cssStyle={topCloseButtonStyle}
                   onClick={onClickCloseButton}
                 >
-                  <S.IconCloseStyled />
+                  {whiteTopCloseButton ? (
+                    <S.IconWhiteClose />
+                  ) : (
+                    <S.IconCloseStyled />
+                  )}
                 </S.CloseSvgButton>
               )}
-              <div className='basic_modal_wrapper'>
-                {title && <S.Title titleStyle={titleStyle}>{title}</S.Title>}
+              <div className="basic_modal_wrapper">
+                {title && <S.Title $titleStyle={titleStyle}>{title}</S.Title>}
                 {description ? (
-                  <S.Description descriptionStyle={descriptionStyle}>
+                  <S.Description $descriptionStyle={descriptionStyle}>
                     {description}
                   </S.Description>
                 ) : (
@@ -118,7 +128,7 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
                 (closeButtonType ? (
                   <Button
                     type={closeButtonType}
-                    buttonStyle={buttonStyle}
+                    $buttonstyle={buttonStyle}
                     text={closeButtonText}
                     onClick={() => {
                       if (onClickApply) {
@@ -130,7 +140,7 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
                 ) : (
                   <S.CloseButtonWrapper buttonStyle={buttonStyle}>
                     <button
-                      className={"button"}
+                      className={'button'}
                       onClick={() => {
                         if (onClickApply) {
                           onClickApply();
@@ -144,10 +154,8 @@ export const BasicModal = forwardRef<HTMLDivElement, IProps>(
                 ))}
             </S.ModalWrapper>
           </S.Container>,
-          document.querySelector("#myportal") as Element | DocumentFragment
+          document.querySelector('#myportal')
         )
       : null;
   }
 );
-
-export default BasicModal;

@@ -1,16 +1,8 @@
 export interface IHomeInitialState {
   resultData: ResultDetail | null;
-  resultMonthData: ResultDetail | null;
   isLoading: {
     main: boolean;
-    ranking: boolean;
-    campaign: boolean;
-    graph: boolean;
-    chart: boolean;
   };
-  selectedYear: number | string;
-  selectedMonth: number | string;
-  selectedResult: ResultPaymentMonthly | null;
   modals: {
     result: boolean;
   };

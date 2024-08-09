@@ -1,12 +1,13 @@
-import { css, keyframes } from "styled-components";
-import { color } from "./colors";
+import { css, keyframes } from 'styled-components';
+
+import { color } from './colors';
 
 export const size = {
-  tablet: "768px",
-  laptop: "1024px",
-  laptopL: "1200px",
-  desktop: "1440px",
-  desktopL: "2560px",
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1200px',
+  desktop: '1440px',
+  desktopL: '2560px',
 };
 
 export const device = {
@@ -31,9 +32,9 @@ const appear = keyframes`
 
 export const mixins = {
   flexSet: (
-    justifyContent = "center",
-    alignItems = "center",
-    flexDirection = "row"
+    justifyContent = 'center',
+    alignItems = 'center',
+    flexDirection = 'row'
   ) => css`
     display: flex;
     justify-content: ${justifyContent};
@@ -78,14 +79,14 @@ export const mixins = {
       display: none; /* Chrome, Safari, Opera*/
     }
   `,
-  fontStyle: (weight = "normal", stretch = "normal", style = "normal") => css`
+  fontStyle: (weight = 'normal', stretch = 'normal', style = 'normal') => css`
     font-weight: ${weight};
     font-stretch: ${stretch};
     font-style: ${style};
   `,
 
   lineStyle: (
-    lineHeight: number | string = "1.4rem",
+    lineHeight: number | string = '1.4rem',
     letterSpacing: number | string = 0
   ) => css`
     line-height: ${lineHeight};
@@ -236,7 +237,7 @@ export const customStyles = {
         border: 0.0625rem solid ${color.gray[300]};
       `}
     background-color: ${({ isChecked }) =>
-      isChecked ? color.gray[850] : "#fff"};
+      isChecked ? color.gray[850] : '#fff'};
 
     svg {
       width: 1rem;
@@ -264,7 +265,7 @@ export const customStyles = {
   `,
   purpleUnderBarStyle: css`
     ${mixins.fontStyle()}
-    ${mixins.lineStyle("1.25rem", -0.26)}
+    ${mixins.lineStyle('1.25rem', -0.26)}
     position: relative;
     font-size: 0.875rem;
     color: #343434;
@@ -275,7 +276,7 @@ export const customStyles = {
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0.625rem;
       z-index: -1;

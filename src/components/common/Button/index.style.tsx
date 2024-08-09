@@ -1,89 +1,92 @@
-import styled, { css } from "styled-components";
-import { color, mixins, device } from "@/styles";
-import type { ButtonProps } from "./index";
+import styled, { css } from 'styled-components';
+
+import { color, device, mixins } from '@/styles';
+
+import type { ButtonProps } from './index';
 
 interface containerProps {
-  marginLeft?: number;
-  marginRight?: number;
-  marginBottom?: number;
-  containerStyled?: string;
+  $marginLeft?: number;
+  $marginRight?: number;
+  $marginBottom?: number;
+  $containerstyle?: string;
 }
 
 export const Container = styled.div<containerProps>`
   position: relative;
   flex: 1;
-  ${({ marginBottom }) => marginBottom && `margin-bottom: ${marginBottom}rem;`}
-  ${({ marginLeft }) => marginLeft && `margin-left: ${marginLeft}rem;`}
-  ${({ marginRight }) => marginRight && `margin-right: ${marginRight}rem;`}
-  ${({ containerStyled }) => containerStyled && `${containerStyled}`}
+  ${({ $marginBottom }) =>
+    $marginBottom && `margin-bottom: ${$marginBottom}rem;`}
+  ${({ $marginLeft }) => $marginLeft && `margin-left: ${$marginLeft}rem;`}
+  ${({ $marginRight }) => $marginRight && `margin-right: ${$marginRight}rem;`}
+  ${({ $containerstyle }) => $containerstyle && `${$containerstyle}`}
 `;
 
 export const DiabledButton = styled.div<ButtonProps>`
   ${mixins.flexSet()}
-  ${({ isLight }) => mixins.fontStyle(isLight ? "normal" : "bold")}
+  ${({ $isLight }) => mixins.fontStyle($isLight ? 'normal' : 'bold')}
   ${({ lineHeight }) => mixins.lineStyle(lineHeight ? lineHeight : undefined)}
   
   width: 100%;
-  height: ${({ height }) => height ?? 3}rem;
+  height: ${({ $height }) => $height ?? 3}rem;
   margin: 0 auto;
-  font-size: ${({ fontSize }) => fontSize ?? 1}rem;
+  font-size: ${({ $fontSize }) => $fontSize ?? 1}rem;
   color: white;
   white-space: pre;
   font-family: inherit;
   background: #babec2;
-  border-radius: ${({ borderRadius }) => borderRadius ?? 0.375}rem;
+  border-radius: ${({ $borderradius }) => $borderradius ?? 0.375}rem;
   border-color: #babec2;
   cursor: not-allowed;
-  ${({ buttonStyle }) => buttonStyle}
+  ${({ $buttonstyle }) => $buttonstyle}
 `;
 
 export const Button = styled.button<ButtonProps>`
   ${mixins.flexSet()}
-  ${({ isLight }) => mixins.fontStyle(isLight ? "normal" : "bold")}
+  ${({ $isLight }) => mixins.fontStyle($isLight ? 'normal' : 'bold')}
   ${({ lineHeight }) => mixins.lineStyle(lineHeight ? lineHeight : undefined)}
   width: 100%;
   max-width: 100%;
-  height: ${({ height }) => height ?? 3}rem;
+  height: ${({ $height }) => $height ?? 3}rem;
   margin: 0 auto;
-  border-radius: ${({ borderRadius }) => borderRadius ?? 0.375}rem;
-  font-size: ${({ fontSize }) => fontSize ?? 1}rem;
+  border-radius: ${({ $borderradius }) => $borderradius ?? 0.375}rem;
+  font-size: ${({ $fontSize }) => $fontSize ?? 1}rem;
   white-space: pre;
   font-family: inherit;
   transition: all 0.15s ease-in-out;
-  ${({ noClick }) => (!noClick ? "cursor: pointer;" : "cursor: unset;")}
-  ${({ buttonType, noClick, disabled }) => {
-    if (buttonType === "gray") {
+  ${({ noClick }) => (!noClick ? 'cursor: pointer;' : 'cursor: unset;')}
+  ${({ $buttonType, noClick, disabled }) => {
+    if ($buttonType === 'gray') {
       return css`
-        border: 0.0625rem solid ${color.gray[300]};
-        background-color: "#fff";
-        color: ${color.gray[500]};
+        border: 0.0625rem solid ${color.gray['570']};
+        background-color: ${color.gray['570']};
+        color: #fff;
 
         &:disabled {
-          border: solid 0.0625rem ${color.gray[250]};
-          color: ${color.gray[280]};
-          background-color: #fff;
+          border: solid 0.0625rem ${color.gray['170']};
+          color: #fff;
+          background-color: ${color.gray['170']};
           cursor: not-allowed;
         }
 
         ${!noClick
           ? css`
               &:active:enabled {
-                background-color: ${color.gray[100]};
+                opacity: 0.7;
               }
 
               @media ${device.laptop} {
                 &:hover:enabled {
-                  background-color: ${color.gray[100]};
+                  opacity: 0.7;
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "purple") {
+    if ($buttonType === 'purple') {
       return css`
-        border: 0.0625rem solid ${color.purple[500]};
-        background-color: ${color.purple[500]};
+        border: 0.0625rem solid ${color.purple[430]};
+        background-color: ${color.purple[430]};
         color: white;
 
         &:disabled {
@@ -95,19 +98,19 @@ export const Button = styled.button<ButtonProps>`
         ${!noClick
           ? css`
               &:active:enabled {
-                background-color: ${color.purple[450]};
+                opacity: 0.7;
               }
 
               @media ${device.laptop} {
                 &:hover:enabled {
-                  background-color: ${color.purple[450]};
+                  opacity: 0.7;
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "blackWhite") {
+    if ($buttonType === 'blackWhite') {
       return css`
         border: 0.0625rem solid black;
         background-color: white;
@@ -131,13 +134,13 @@ export const Button = styled.button<ButtonProps>`
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "black") {
+    if ($buttonType === 'black') {
       return css`
-        border: solid 0.0625rem ${color.gray[850]};
-        background-color: ${color.gray[850]};
+        border: solid 0.0625rem ${color.gray[730]};
+        background-color: ${color.gray[730]};
         color: white;
 
         &:disabled {
@@ -149,22 +152,22 @@ export const Button = styled.button<ButtonProps>`
         ${!noClick
           ? css`
               &:active:enabled {
-                background-color: ${color.gray[700]};
+                opacity: 0.7;
               }
 
               @media ${device.laptop} {
                 &:hover:enabled {
-                  background-color: ${color.gray[700]};
+                  opacity: 0.7;
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "blue") {
+    if ($buttonType === 'blue') {
       return css`
-        border: 0.0625rem solid ${color.blue[800]};
-        background-color: ${color.blue[800]};
+        border: 0.0625rem solid ${color.blue['850']};
+        background-color: ${color.blue['850']};
         color: white;
 
         &:disabled {
@@ -185,10 +188,10 @@ export const Button = styled.button<ButtonProps>`
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "pink") {
+    if ($buttonType === 'pink') {
       return css`
         border: 0.0625rem solid ${color.pink[700]};
         background-color: ${color.pink[700]};
@@ -212,10 +215,10 @@ export const Button = styled.button<ButtonProps>`
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
-    if (buttonType === "gradient-blue") {
+    if ($buttonType === 'gradient-blue') {
       return css`
         position: absolute;
         top: 0;
@@ -247,7 +250,7 @@ export const Button = styled.button<ButtonProps>`
                 }
               }
             `
-          : ""}
+          : ''}
       `;
     }
     return css`
@@ -274,8 +277,8 @@ export const Button = styled.button<ButtonProps>`
               }
             }
           `
-        : ""}
+        : ''}
     `;
   }}
-  ${({ buttonStyle }) => buttonStyle}
+  ${({ $buttonstyle }) => $buttonstyle}
 `;

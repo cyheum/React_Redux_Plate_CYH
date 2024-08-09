@@ -1,35 +1,24 @@
-import {
-  GetResultsDataParams,
-  IHomeInitialState,
-  ResultPaymentMonthly,
-} from "@/interfaces";
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { GetResultsDataParams, IHomeInitialState } from '@/interfaces';
 
 const initialState: IHomeInitialState = {
   isLoading: {
     main: false,
-    ranking: false,
-    campaign: false,
-    graph: false,
-    chart: false,
   },
   resultData: null,
-  resultMonthData: null,
-  selectedYear: 2018,
-  selectedMonth: "all",
-  selectedResult: null,
   modals: {
     result: false,
   },
 };
 
 const slice = createSlice({
-  name: "homeReducer",
+  name: 'homeReducer',
   initialState,
   reducers: {
     setIsLoading: (
       state,
-      { payload }: PayloadAction<IHomeInitialState["isLoading"]>
+      { payload }: PayloadAction<IHomeInitialState['isLoading']>
     ) => {
       state.isLoading = payload;
     },
@@ -38,7 +27,7 @@ const slice = createSlice({
       {
         payload,
       }: PayloadAction<{
-        id: keyof IHomeInitialState["isLoading"];
+        id: keyof IHomeInitialState['isLoading'];
         value: boolean;
       }>
     ) => {
@@ -46,37 +35,19 @@ const slice = createSlice({
     },
     setResultData: (
       state,
-      { payload }: PayloadAction<IHomeInitialState["resultData"]>
+      { payload }: PayloadAction<IHomeInitialState['resultData']>
     ) => {
       state.resultData = payload;
     },
-    setResultMonthData: (
-      state,
-      { payload }: PayloadAction<IHomeInitialState["resultData"]>
-    ) => {
-      state.resultMonthData = payload;
-    },
-    setSelectedYear: (state, { payload }: PayloadAction<number | string>) => {
-      state.selectedYear = payload;
-    },
-    setSelectedMonth: (state, { payload }: PayloadAction<number | string>) => {
-      state.selectedMonth = payload;
-    },
-    setSelectedResult: (
-      state,
-      { payload }: PayloadAction<ResultPaymentMonthly>
-    ) => {
-      state.selectedResult = payload;
-    },
     setModals: (
       state,
-      { payload }: PayloadAction<IHomeInitialState["modals"]>
+      { payload }: PayloadAction<IHomeInitialState['modals']>
     ) => {
       state.modals = payload;
     },
     openModal: (
       state,
-      { payload }: PayloadAction<keyof IHomeInitialState["modals"]>
+      { payload }: PayloadAction<keyof IHomeInitialState['modals']>
     ) => {
       state.modals[payload] = true;
     },
@@ -93,27 +64,11 @@ const slice = createSlice({
 export const selectHomeState = createSelector(
   (state: IHomeInitialState) => state.isLoading,
   (state: IHomeInitialState) => state.resultData,
-  (state: IHomeInitialState) => state.resultMonthData,
-  (state: IHomeInitialState) => state.selectedYear,
-  (state: IHomeInitialState) => state.selectedMonth,
-  (state: IHomeInitialState) => state.selectedResult,
   (state: IHomeInitialState) => state.modals,
-  (
-    isLoading,
-    resultData,
-    resultMonthData,
-    selectedYear,
-    selectedMonth,
-    selectedResult,
-    modals
-  ) => {
+  (isLoading, resultData, modals) => {
     return {
       isLoading,
       resultData,
-      resultMonthData,
-      selectedYear,
-      selectedMonth,
-      selectedResult,
       modals,
     };
   }

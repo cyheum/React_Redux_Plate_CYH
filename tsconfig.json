@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "target": "es5",
-    "lib": ["dom", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020"],
     "allowJs": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "es2017", "ESNext"],
+    "module": "esnext",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "es5",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -18,8 +25,10 @@
       "@images": ["public/images/index.ts"]
     },
     "outDir": "./dist",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "global.d.ts"]
+  "include": ["**/*.ts", "**/*.tsx", "global.d.ts"],
+  "types": ["node"]
 }

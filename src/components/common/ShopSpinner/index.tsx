@@ -1,6 +1,8 @@
 import React from 'react';
-import * as S from './index.style';
+
 import { color } from '@/styles';
+
+import * as S from './index.style';
 
 interface IProps {
   height?: number;

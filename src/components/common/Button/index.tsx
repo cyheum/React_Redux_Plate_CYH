@@ -1,8 +1,9 @@
 import React from 'react';
+
 import * as S from './index.style';
 
 export interface ButtonProps {
-  buttonType:
+  $buttonType:
     | 'white'
     | 'purple'
     | 'gray'
@@ -12,27 +13,27 @@ export interface ButtonProps {
     | 'red'
     | 'pink'
     | 'gradient-blue';
-  isLight?: boolean;
+  $isLight?: boolean;
   disabledStyle?: string;
-  height?: number;
-  fontSize?: number;
+  $height?: number;
+  $fontSize?: number;
   lineHeight?: string;
-  buttonStyle?: string;
-  borderRadius?: number;
+  $buttonstyle?: string;
+  $borderradius?: number;
   noPreventDefault?: boolean;
   noClick?: boolean;
   disabled?: boolean;
 }
 
 export interface ContainerProps {
-  marginLeft?: number;
-  marginRight?: number;
-  marginBottom?: number;
-  containerStyled?: string;
+  $marginLeft?: number;
+  $marginRight?: number;
+  $marginBottom?: number;
+  $containerstyle?: string;
 }
 
-interface IProps extends Omit<ButtonProps, 'buttonType'>, ContainerProps {
-  type?: ButtonProps['buttonType'];
+interface IProps extends Omit<ButtonProps, '$buttonType'>, ContainerProps {
+  type?: ButtonProps['$buttonType'];
   onClick?: () => void;
   disabled?: boolean;
   text?: string | React.ReactNode;
@@ -41,54 +42,54 @@ interface IProps extends Omit<ButtonProps, 'buttonType'>, ContainerProps {
   noStopPropagation?: boolean;
 }
 
-const PrimaryButton: React.FC<IProps> = ({
-  containerStyled,
+export const Button: React.FC<IProps> = ({
+  $containerstyle,
   type = 'black',
   text,
-  height,
+  $height,
   lineHeight,
-  isLight,
+  $isLight,
   disabled = false,
   disabledStyle,
   onClick,
-  marginLeft,
-  marginRight,
-  marginBottom,
-  fontSize,
+  $marginLeft,
+  $marginRight,
+  $marginBottom,
+  $fontSize,
   children,
-  buttonStyle,
+  $buttonstyle,
   getClassName,
-  borderRadius,
+  $borderradius,
   noPreventDefault,
   noClick,
   noStopPropagation,
 }) => {
   return (
     <S.Container
-      marginBottom={marginBottom}
-      marginLeft={marginLeft}
-      marginRight={marginRight}
-      containerStyled={containerStyled}
+      $marginBottom={$marginBottom}
+      $marginLeft={$marginLeft}
+      $marginRight={$marginRight}
+      $containerstyle={$containerstyle}
     >
       <S.Button
         className={getClassName}
-        buttonStyle={buttonStyle}
+        $buttonstyle={$buttonstyle}
         noClick={noClick}
-        height={height}
+        $height={$height}
         lineHeight={lineHeight}
-        isLight={isLight}
-        fontSize={fontSize}
-        buttonType={type}
+        $isLight={$isLight}
+        $fontSize={$fontSize}
+        $buttonType={type}
         disabled={disabled}
         disabledStyle={disabledStyle}
-        borderRadius={borderRadius}
+        $borderradius={$borderradius}
         onClick={(e) => {
           if (!noPreventDefault) {
             e.preventDefault();
           }
-          if (!noClick) {
+          if (!noClick && Boolean(onClick)) {
             e.stopPropagation();
-            onClick && onClick();
+            onClick();
           }
         }}
         onMouseDown={(e) => {
@@ -107,15 +108,15 @@ const PrimaryButton: React.FC<IProps> = ({
       </S.Button>
       {type === 'gradient-blue' && (
         <S.DiabledButton
-          buttonStyle={buttonStyle}
-          height={height}
+          $buttonstyle={$buttonstyle}
+          $height={$height}
           lineHeight={lineHeight}
-          isLight={isLight}
-          fontSize={fontSize}
-          buttonType={type}
+          $isLight={$isLight}
+          $fontSize={$fontSize}
+          $buttonType={type}
           disabled={disabled}
           disabledStyle={disabledStyle}
-          borderRadius={borderRadius}
+          $borderradius={$borderradius}
         >
           {text}
           {children}
@@ -125,5 +126,4 @@ const PrimaryButton: React.FC<IProps> = ({
   );
 };
 
-export default PrimaryButton;
-export const MemoizedPrimaryButton = React.memo(PrimaryButton);
+export const MemoizedPrimaryButton = React.memo(Button);

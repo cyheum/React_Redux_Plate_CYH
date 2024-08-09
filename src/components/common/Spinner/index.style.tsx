@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+
 import { mixins } from '@/styles';
 
 const spin = keyframes`

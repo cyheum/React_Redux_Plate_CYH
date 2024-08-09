@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import { color } from './colors';
+
 import { mixins } from '.';
+import { color } from './colors';
 
 export const GlobalStyle = createGlobalStyle`
 

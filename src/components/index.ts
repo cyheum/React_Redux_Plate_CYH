@@ -1,16 +1,17 @@
 //common
 
-import { Spinner } from "./common/Spinner";
-import { ShopSpinner } from "./common/ShopSpinner";
-import { SelectBox } from "./common/SelectBox";
-import { NumberCounter } from "./common/NumberCounter";
-import { MemoizedPrimaryButton as Button } from "./common/Button";
-import { BasicModal } from "./common/Modal/BasicModal";
+import { ButtonProps, MemoizedPrimaryButton as Button } from './common/Button';
+import { BasicModal } from './common/Modal/BasicModal';
+import { SelectBox } from './common/SelectBox';
+import { ShopSpinner } from './common/ShopSpinner';
+import { Spinner } from './common/Spinner';
 
-export { Spinner, ShopSpinner, SelectBox, NumberCounter, Button, BasicModal };
+export type { ButtonProps };
+
+export { BasicModal, Button, SelectBox, ShopSpinner, Spinner };
 
 // layout
 
-import { HomeContainer } from "./layout/Home";
+import { HomeContainer } from './layout/Home';
 
 export { HomeContainer };

@@ -1,5 +1,6 @@
-import React from "react";
-import { HomeContainer } from "@/components";
+import React from 'react';
+
+import { HomeContainer } from '@/components';
 
 const HomePage: React.FC = () => {
   return <HomeContainer />;

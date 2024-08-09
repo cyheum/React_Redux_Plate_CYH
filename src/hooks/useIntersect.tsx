@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, MutableRefObject } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 interface IntersectProps {
   root?: Element | null;

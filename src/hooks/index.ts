@@ -1,4 +1,3 @@
-export * from './useScrollDirection';
-export * from './useResize';
 export * from './useIntersect';
-export * from './useGetStore';
+export * from './useResize';
+export * from './useScrollDirection';
